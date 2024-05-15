@@ -10,9 +10,9 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name="coffee")
+@Table(name="product")
 @EqualsAndHashCode(of="id")
-public class Coffee implements Serializable {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,5 +23,6 @@ public class Coffee implements Serializable {
     @Column(nullable = false)
     private Double price;
 
-
+    @Column(nullable = false)
+    private String description;
 }

@@ -10,9 +10,9 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name="brand")
+@Table(name="user")
 @EqualsAndHashCode(of="id")
-public class Brand implements Serializable {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +21,10 @@ public class Brand implements Serializable {
     private String name;
 
     @Column(nullable = false)
-    private String description;
+    private String password;
+
+    @Column (nullable = false)
+    private String email;
 
 
 }
