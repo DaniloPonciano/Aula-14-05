@@ -10,9 +10,9 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name="product")
+@Table(name="revenue")
 @EqualsAndHashCode(of="id")
-public class Product implements Serializable {
+public class Revenue implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,8 +21,14 @@ public class Product implements Serializable {
     private String name;
 
     @Column(nullable = false)
-    private Double price;
+    private String introduction;
 
     @Column(nullable = false)
-    private String description;
+    private String ingredient;
+
+    @Column(nullable = false)
+    private String method_preparation;
+
+    @Column(nullable = false)
+    private String nutritional_information;
 }

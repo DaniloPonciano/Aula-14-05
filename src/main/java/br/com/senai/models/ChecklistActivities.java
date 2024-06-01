@@ -6,25 +6,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Getter
 @Setter
 @Entity
-@Table(name="user")
+@Table(name="Checklist_Activities")
 @EqualsAndHashCode(of="id")
-public class User implements Serializable {
+public class ChecklistActivities implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String name_activities;
 
     @Column(nullable = false)
-    private String password;
+    private String type;
 
-    @Column (nullable = false)
-    private String email;
-
-
+    @Column(nullable = false)
+    private Date date_hour ;
 }
