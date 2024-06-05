@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:5173")
@@ -68,5 +69,21 @@ public class RevenueController {
         //chamamos o método .delete e passamos o ítem a ser deletado
         revenueRepository.delete(getRevenue);
         return getRevenue;
+    }
+
+    @GetMapping(value = "/filtro/{palavra}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Revenue> filtrarLista(@PathVariable String palavra) {
+        // Search for products using the provided 'palavra'
+        List<Revenue> filteredProducts = revenueRepository.findByNameContainingIgnoreCase(palavra);
+
+        // Check if any products were found
+        if (filteredProducts.isEmpty()) {
+            // No products found, return an empty list
+            return Collections.emptyList();
+        }
+
+        // Products found, return the filtered list
+        return filteredProducts;
     }
 }

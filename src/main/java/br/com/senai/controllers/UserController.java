@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
     @Autowired
     UserRepository userRepository;
@@ -31,13 +31,13 @@ public class UserController {
     @PostMapping(value = "/createUsers",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Users createUsers(@RequestBody Users user) {
+    public Users createUsers(@RequestBody Users users) {
         //Cria um novo objeto Userss
         Users newUsers = new Users();
         //Seta as propriedades do Coffee
-        newUsers.setName(user.getName());
-        newUsers.setPassword(user.getPassword());
-        newUsers.setEmail(user.getEmail());
+        newUsers.setName(users.getName());
+        newUsers.setPassword(users.getPassword());
+        newUsers.setEmail(users.getEmail());
         //Chama o método save para salvar o objeto no banco de dados
         return userRepository.save(newUsers);
     }
