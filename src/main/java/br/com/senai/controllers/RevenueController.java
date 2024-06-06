@@ -41,20 +41,20 @@ public class RevenueController {
     }
 
     //Métod update, para atualizar um ítem no banco de dados
-    @PutMapping(value="/updateRevenue",
+    @PutMapping(value="/updateRevenue/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Revenue updateRevenue(@RequestBody Revenue revenue){
+    public Revenue updateRevenue(@RequestBody Revenue revenue,@PathVariable Long id){
         //Pega um íten já criado e permite atualização no ítem
         Revenue getRevenue = revenueRepository
-                .findById(revenue.getId()).orElseThrow();
+                .findById(id).orElseThrow();
         Revenue updateRevenue = new Revenue();
         //Seta os updates nos produtos já criados
         updateRevenue.setName(revenue.getName());
-        updateRevenue.setIntroduction(revenue.getIntroduction());
-        updateRevenue.setIngredient(revenue.getIngredient());
-        updateRevenue.setMethod_preparation(revenue.getMethod_preparation());
-        updateRevenue.setNutritional_information(revenue.getNutritional_information());
+        updateRevenue.setIntroduction(getRevenue.getIntroduction());
+        updateRevenue.setIngredient(getRevenue.getIngredient());
+        updateRevenue.setMethod_preparation(getRevenue.getMethod_preparation());
+        updateRevenue.setNutritional_information(getRevenue.getNutritional_information());
         //Método save para salvar as alterações no banco de dados
         return revenueRepository.save(updateRevenue);
     }
